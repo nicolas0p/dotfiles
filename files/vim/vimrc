@@ -1,7 +1,7 @@
 set sts=4
 set ts=4
 set sw=4
-set expandtab
+"set expandtab
 set autoindent
 
 set lbr
@@ -28,23 +28,27 @@ au BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
 
 au BufWinEnter * let w:m2=matchadd('OverLength', '\%81v.\+', -1)
 
+set autochdir
+set tags=./tags;~/workspace
 
 syntax on
 
 
 " vundle setup
 filetype off
-
+"
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
+"
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
-
-Plugin 'davidhalter/jedi-vim'
-
+"
+" Plugin 'davidhalter/jedi-vim'
+"
+Plugin 'yegappan/lid'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
-
+"
 filetype plugin indent on
