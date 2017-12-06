@@ -145,6 +145,7 @@ exec --no-startup-id NetworkManager
 exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id numlockx on
+exec --no-startup-id setxkbmap gb
 #exec --no-startup-id xrandr --output DP2-1 --primary --auto --right-of eDP1
 #exec --no-startup-id xrandr --output DP1 --auto --right-of DP2-1
 #exec --no-startup-id autorandr --change
