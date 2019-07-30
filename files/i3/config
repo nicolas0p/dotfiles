@@ -15,7 +15,7 @@ set $ws2 2: 2 internet
 set $ws9 9:9
 set $ws10 10:10
 
-bindsym --release $mod+Return exec gnome-terminal
+bindsym --release $mod+Return exec xfce4-terminal
 bindsym --release $mod+w exec firefox
 bindsym --release $mod+e exec nautilus
 #bindsym --release $mod+e exec nautilus --no-desktop
@@ -28,9 +28,12 @@ bindsym --release $mod+l exec slock
 #XF86 bindings
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && killall -SIGUSR1 i3status
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && killall -SIGUSR1 i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && killall -SIGUSR1 i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && killall -SIGUSR1 i3status
+#bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && killall -SIGUSR1 i3status
+bindsym $mod+F2 exec --no-startup-id amixer -q -D pulse sset Master 5%+ && killall -SIGUSR1 i3status
+bindsym $mod+F1 exec --no-startup-id amixer -q -D pulse sset Master 5%- && killall -SIGUSR1 i3status
+bindsym $mod+F3 exec --no-startup-id amixer -q -D pulse sset Master toggle && killall -SIGUSR1 i3status
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 bindsym XF86AudioPause exec mpc toggle
@@ -97,7 +100,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # move focused container to stratchpad
-bindsym $mod+z move scratchpad
+#bindsym $mod+z move scratchpad
 bindsym $mod+x scratchpad show
 
 bindsym $mod+Shift+z reload
@@ -140,12 +143,14 @@ client.focused_inactive #2d2d2d #2d2d2d #dedede #2d2d2d
 client.unfocused        #2d2d2d #2d2d2d #dedede #2d2d2d
 client.urgent           #333333 #333333 #d64937 #333333
 
-exec --no-startup-id ibus-daemon
-exec --no-startup-id NetworkManager
+#exec --no-startup-id ibus-daemon
+#exec --no-startup-id NetworkManager
 exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id numlockx on
-exec --no-startup-id setxkbmap gb
+exec --no-startup-id redshift -l -27.596:-48.549
+#exec --no-startup-id setxkbmap gb
+exec --no-startup-id setxkbmap us -variant intl
 #exec --no-startup-id xrandr --output DP2-1 --primary --auto --right-of eDP1
 #exec --no-startup-id xrandr --output DP1 --auto --right-of DP2-1
 #exec --no-startup-id autorandr --change
