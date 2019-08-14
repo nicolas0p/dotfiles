@@ -25,6 +25,11 @@ nmap <silent> ,i gg=G:retab<CR>''
 
 set pastetoggle=<F2>
 
+:colorscheme desert
+
+map <C-K> :ClangFormat<CR>
+imap <C-K> <c-o>:ClangFormat<CR>
+
 highligh ExtraWhitespace ctermbg=red
 "highligh OverLength ctermbg=DarkMagenta ctermfg=white
 
@@ -44,25 +49,29 @@ syntax on
 
 " vundle setup
 filetype off
-"
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-"
+
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
-"
-" Plugin 'davidhalter/jedi-vim'
-"
+Plugin 'kana/vim-operator-user'
+Plugin 'davidhalter/jedi-vim'
+
 Plugin 'yegappan/lid'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rhysd/vim-clang-format'
 call vundle#end()
-"
+
 filetype plugin indent on
 
 "YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"clang-format
+autocmd FileType c ClangFormatAutoEnable
 
 function! s:insert_gates()
 	let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
