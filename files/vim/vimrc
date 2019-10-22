@@ -19,7 +19,7 @@ set ignorecase
 set smartcase
 set hlsearch
 
-map q :q<enter>
+"map q :q<enter>
 
 nmap <silent> ,i gg=G:retab<CR>''
 
@@ -72,6 +72,12 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "clang-format
 autocmd FileType c ClangFormatAutoEnable
+
+let g:clang_format#code_style = "llvm"
+let g:clang_format#style_options = {
+    \ "TabWidth" : 4,
+    \ "UseTab" : "Never"}
+
 
 function! s:insert_gates()
 	let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
