@@ -108,10 +108,10 @@ bindsym $mod+Shift+x restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-  bindsym Left resize shrink width 5 px or 5 ppt
-  bindsym Down resize grow height 5 px or 5 ppt
-  bindsym Up resize shrink height 5 px or 5 ppt
-  bindsym Right resize grow width 5 px or 5 ppt
+  bindsym Left resize shrink width 2 px or 2 ppt
+  bindsym Down resize grow height 2 px or 2 ppt
+  bindsym Up resize shrink height 2 px or 2 ppt
+  bindsym Right resize grow width 2 px or 2 ppt
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
@@ -123,7 +123,7 @@ bindsym $mod+Escape mode "resize"
 bar {
   strip_workspace_numbers yes
 
-  status_command i3status --config ~/.config/i3status.conf
+  status_command i3status --config ~/.config/i3status/i3status.conf
   position top
 
   colors {
