@@ -54,7 +54,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'Syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kana/vim-operator-user'
@@ -63,9 +63,19 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'yegappan/lid'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rhysd/vim-clang-format'
+
+Plugin 'rust-lang/rust.vim'
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 call vundle#end()
 
 filetype plugin indent on
+
+"Syntastic options
+let g:syntastic_py_checkers = ["python3"]
+let g:syntastic_check_on_open = 1
 
 "YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -87,3 +97,12 @@ function! s:insert_gates()
 	normal! kk
 endfunction
 autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
+
+"rust
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nighly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ {)
+endif
