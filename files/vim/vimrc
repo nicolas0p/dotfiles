@@ -115,6 +115,9 @@ nnoremap <F6> :TlistShowPrototype<cr>
 set statusline=[%n]\ %<%f\ %([%1*%M%*%R%Y]%)\ \ \ [%{exists('*Tlist_Get_Tagname_By_line')?Tlist_Get_Tagname_By_line():''}]\ %=%-19(\LINE\ [%l/%L]\ COL\ [%02c%03V]%)\ %P
 
 "----coc.nvim config
+" coc extensions
+" also build ccls from source
+let g:coc_global_extensions = ['coc-phpls']
 " give more space for displaying messages.
 set cmdheight=1
 
