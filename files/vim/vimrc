@@ -30,9 +30,6 @@ nmap <silent> ,i gg=G:retab<CR>''
 
 set pastetoggle=<F2>
 
-":colorscheme desert
-:colorscheme ron
-
 map <C-K> :ClangFormat<CR>
 imap <C-K> <c-o>:ClangFormat<CR>
 
@@ -48,6 +45,9 @@ au BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
 
 "au BufWinEnter * let w:m2=matchadd('OverLength', '\%81v.\+', -1)
 
+":colorscheme desert
+:colorscheme ron
+
 set autochdir
 set tags=./tags;~/workspace
 
@@ -62,6 +62,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'neoclide/coc.nvim'
+Plugin 'jackguo380/vim-lsp-cxx-highlight'
 Plugin 'yegappan/lid'
 Plugin 'yegappan/taglist'
 "Plugin 'bling/vim-airline'
@@ -114,12 +115,18 @@ nnoremap <F6> :TlistShowPrototype<cr>
 "display tag on the status line
 set statusline=[%n]\ %<%f\ %([%1*%M%*%R%Y]%)\ \ \ [%{exists('*Tlist_Get_Tagname_By_line')?Tlist_Get_Tagname_By_line():''}]\ %=%-19(\LINE\ [%l/%L]\ COL\ [%02c%03V]%)\ %P
 
+"----vim-lsp-cxx-highlight
+" c++ syntax highlighting
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+
 "----coc.nvim config
 " coc extensions
 " also build ccls from source
 let g:coc_global_extensions = ['coc-phpls']
 " give more space for displaying messages.
-set cmdheight=1
+set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
