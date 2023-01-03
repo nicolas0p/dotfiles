@@ -13,10 +13,9 @@ workspace_auto_back_and_forth no
 set $ws1 1: 1 code
 set $ws2 2: 2 internet
 set $ws3 3: 3 extra
-set $ws9 9:9
 set $ws10 10:10 music
 
-bindsym --release $mod+Return exec xfce4-terminal
+bindsym --release $mod+Return exec kitty --single-instance
 bindsym --release $mod+w exec firefox
 bindsym --release $mod+e exec nautilus
 #bindsym --release $mod+e exec nautilus --no-desktop
@@ -24,7 +23,7 @@ bindsym --release Print exec --no-startup-id xfce4-screenshooter "$HOME/Pictures
 bindsym --release Shift+Print exec --no-startup-id import -window root "$HOME/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png"
 bindsym --release Ctrl+Print exec --no-startup-id import -window "${$(xprop -root | grep '_NET_ACTIVE_WINDOW(WINDOW)'):40}" "$HOME/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png"
 
-bindsym --release $mod+Shift+l exec slock
+bindsym --release $mod+Shift+l exec XSECURELOCK_NO_COMPOSITE=1 xsecurelock
 
 #XF86 bindings
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
@@ -32,9 +31,9 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 #bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && killall -SIGUSR1 i3status
 #bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && killall -SIGUSR1 i3status
 #bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && killall -SIGUSR1 i3status
-bindsym $mod+F2 exec --no-startup-id amixer -q -D pulse sset Master 5%+ && killall -SIGUSR1 i3status
-bindsym $mod+F1 exec --no-startup-id amixer -q -D pulse sset Master 5%- && killall -SIGUSR1 i3status
-bindsym $mod+F3 exec --no-startup-id amixer -q -D pulse sset Master toggle && killall -SIGUSR1 i3status
+bindsym $mod+F2 exec --no-startup-id amixer -q sset Master 5%+ && killall -SIGUSR1 i3status
+bindsym $mod+F1 exec --no-startup-id amixer -q sset Master 5%- && killall -SIGUSR1 i3status
+bindsym $mod+F3 exec --no-startup-id amixer -q sset Master toggle && killall -SIGUSR1 i3status
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 bindsym XF86AudioPause exec mpc toggle
@@ -171,15 +170,24 @@ client.urgent           #333333 #333333 #d64937 #333333
 
 #exec --no-startup-id ibus-daemon
 #exec --no-startup-id NetworkManager
-exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
+exec --no-startup-id onboard &
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id numlockx on
 exec --no-startup-id redshift -l -27.596:-48.549
+
 #exec --no-startup-id setxkbmap gb
-exec --no-startup-id setxkbmap us -variant intl
+#exec --no-startup-id setxkbmap us -variant intl
 #exec --no-startup-id xrandr --output DP2-1 --primary --auto --right-of eDP1
+
+#set screen, touchscreen and touchpad to inverted
+
+exec --no-startup-id xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate inverted
+exec --no-startup-id xinput set-prop "ELAN Touchscreen" --type=float "Coordinate Transformation Matrix" -1 0 1 0 -1 1 0 0 1
+exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" --type=float "Coordinate Transformation Matrix" -1 0 1 0 -1 1 0 0 1
 #exec --no-startup-id xrandr --output DP1 --auto --right-of DP2-1
 #exec --no-startup-id autorandr --change
 
-new_window 1pixel
+default_border pixel 1
+default_floating_border pixel 1
 hide_edge_borders both
