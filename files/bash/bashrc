@@ -135,3 +135,7 @@ alias grep='grep --color=auto -Er --exclude=*~ --exclude=*.pyc --exclude-dir=.bz
 #use vi key bindings
 set -o vi
 
+bind "set completion-ignore-case on"
+
+#alias connect_vpn='globalprotect connect --portal gp.arista.com -u nicolas'
+alias connect_vpn='globalprotect launch-ui'
