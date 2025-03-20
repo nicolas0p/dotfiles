@@ -16,8 +16,9 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
+export HISTTIMEFORMAT="%d/%m/%y %T "
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -75,6 +76,14 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+LAST_CMD_STATUS() {
+  local e=$?
+  (( e )) && printf "\033[01;31m$e\033[00m | "  # color
+  return $e
+}
+
+PS1='$(LAST_CMD_STATUS)'$PS1
 
 alias ls='ls -h'
 
@@ -139,3 +148,8 @@ bind "set completion-ignore-case on"
 
 #alias connect_vpn='globalprotect connect --portal gp.arista.com -u nicolas'
 alias connect_vpn='globalprotect launch-ui'
+
+#use vi key bindings
+set -o vi
+
+bind "set completion-ignore-case on"
